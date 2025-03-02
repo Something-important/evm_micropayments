@@ -1,0 +1,314 @@
+[
+	{
+		"inputs": [],
+		"name": "ChannelDoesNotExistOrWithdrawn",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "FailedToSendEther",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "sent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expected",
+				"type": "uint256"
+			}
+		],
+		"name": "IncorrectAmount",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "blockNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "MerchantCannotRedeemChannelYet",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "NothingPayable",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "blockNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "PayerCannotRedeemChannelYet",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "TokenVerificationFailed",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "payer",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "merchant",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "numberOfTokens",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "merchantWithdrawAfterBlocks",
+				"type": "uint256"
+			}
+		],
+		"name": "ChannelCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "payer",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "merchant",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "blockNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "ChannelReclaimed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "payer",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "merchant",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amountPaid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes32",
+				"name": "finalHashValue",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "numberOfTokensUsed",
+				"type": "uint256"
+			}
+		],
+		"name": "ChannelRedeemed",
+		"type": "event"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "fallback"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "channelsMapping",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "trustAnchor",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfTokens",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "merchantWithdrawAfterBlocks",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "payerWithdrawAfterBlocks",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "merchant",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "trustAnchor",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfTokens",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "merchantWithdrawAfterBlocks",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "payerWithdrawAfterBlocks",
+				"type": "uint256"
+			}
+		],
+		"name": "createChannel",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "merchant",
+				"type": "address"
+			}
+		],
+		"name": "reclaimChannel",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "payer",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "finalHashValue",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfTokensUsed",
+				"type": "uint256"
+			}
+		],
+		"name": "redeemChannel",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "trustAnchor",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "finalHashValue",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "numberOfTokensUsed",
+				"type": "uint256"
+			}
+		],
+		"name": "verifyHashchain",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	}
+]
