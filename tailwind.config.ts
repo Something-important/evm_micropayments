@@ -10,9 +10,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // Light theme colors
+        light: {
+          background: "#F3F4F6", // Light gray background (better than plain white)
+          text: "#333333", // Darker text for better readability
+          accent: "#34D399", // Vibrant mint green for accent
+          button: "#FB923C", // Vibrant orange button color
+          headerFooter: "#FFFFFF", // White header/footer
+          primary: "#1D4ED8", // Deep blue for primary call-to-actions
+          secondary: "#F97316", // Bright orange for secondary actions
+          lightMint: "#A7F3D0", // Soft mint green
+          mutedGray: "#E5E7EB", // Light gray
+          darkGray: "#6B7280", // Dark gray for secondary text
+        },
+        // Dark theme colors
+        dark: {
+          background: "#2D3748", // Darker teal background
+          text: "#E2E8F0", // Light text for dark mode (light mint green)
+          accent: "#34D399", // Vibrant mint green
+          button: "#FB923C", // Orange button color
+          headerFooter: "#1A202C", // Dark grayish header/footer
+          primary: "#3182CE", // Lighter blue for primary in dark mode
+          secondary: "#F97316", // Bright orange for secondary in dark mode
+          lightMint: "#A7F3D0", // Soft mint green
+          mutedGray: "#4A5568", // Gray for dark mode
+        },
       },
+      fontFamily: {
+        sans: ["Arial", "sans-serif"], // Custom font family
+      },
+      // Add more custom spacing, breakpoints, etc., as needed
     },
   },
   plugins: [],

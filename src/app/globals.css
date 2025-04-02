@@ -2,16 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F3F4F6; /* Matches custom theme’s light.background */
+  --foreground: #333333; /* Matches custom theme’s light.text */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark mode variables when .dark class is present */
+.dark {
+  --background: #2D3748; /* Matches custom theme’s dark.background */
+  --foreground: #E2E8F0; /* Matches custom theme’s dark.text */
 }
 
 body {
