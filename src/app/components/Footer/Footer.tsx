@@ -7,51 +7,75 @@ const Footer: React.FC = () => {
   const { theme } = useTheme();
 
   return (
-    <footer className={`w-full ${theme === "light" ? "bg-white" : "bg-gray-900"} py-8 px-6 border-t ${theme === "light" ? "border-gray-200" : "border-gray-800"}`}>
+    <footer
+      className={`w-full py-8 px-6 bg-light-headerFooter text-light-text dark:bg-dark-headerFooter dark:text-dark-text`}
+    >
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
         <div>
-          <h3 className={`font-medium mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>Wallet.io</h3>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Streaming wallet application</p>
+          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+            HashPay
+          </h3>
+          <p className="text-sm text-light-darkGray dark:text-dark-mutedGray">
+            Streaming crypto payments
+          </p>
         </div>
         <div>
-          <h3 className={`font-medium mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>Community</h3>
+          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+            Community
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-200">
+              <a
+                href="https://x.com/i/flow/login?redirect_after_login=%2FHC_Protocol"
+                className="text-light-darkGray dark:text-dark-mutedGray hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200"
+              >
                 Twitter
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-200">
+              <a
+                href="#"
+                className="text-light-darkGray dark:text-dark-mutedGray hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200"
+              >
                 Discord
               </a>
             </li>
           </ul>
         </div>
         <div>
-          <h3 className={`font-medium mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>Links</h3>
+          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+            Links
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-200">
+              <Link
+                href="/"
+                className="text-light-darkGray dark:text-dark-mutedGray hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/dashboard" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition duration-200">
-                Get started
+              <Link
+                href="/dashboard"
+                className="text-light-darkGray dark:text-dark-mutedGray hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200"
+              >
+                Get Started
               </Link>
             </li>
           </ul>
         </div>
         <div>
-          <h3 className={`font-medium mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>Contact</h3>
+          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+            Contact
+          </h3>
           <ul className="space-y-2 text-sm">
-            <li className="text-gray-600 dark:text-gray-400">91+9999999</li>
-            <li className="text-gray-600 dark:text-gray-400">Wallet.io@gmail.com</li>
+            <li className="text-light-darkGray dark:text-dark-mutedGray">+91 9999999999</li>
+            <li className="text-light-darkGray dark:text-dark-mutedGray">contact@hashpay.com</li>
           </ul>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto mt-8 pt-4 border-t border-gray-200 dark:border-gray-800 text-center text-xs text-gray-500 dark:text-gray-400">
+      <div className="max-w-6xl mx-auto mt-8 pt-4 border-t border-light-mutedGray dark:border-dark-mutedGray text-center text-xs text-light-darkGray dark:text-dark-mutedGray">
         © 2025 Copyright reserved
       </div>
     </footer>
@@ -59,3 +83,4 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+

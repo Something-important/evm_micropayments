@@ -3,20 +3,25 @@ import React from "react";
 import Link from "next/link";
 import CustomConnectButton from "../connectButton";
 import { useTheme } from "../../context/themeContext";
+import Logo from "../Logo";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className={`w-full ${theme === "light" ? "bg-white" : "bg-gray-900"} py-4 px-6`}>
+    <header className="w-full py-4 px-6 bg-light-headerFooter dark:bg-dark-headerFooter text-light-text dark:text-dark-text shadow-md">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link href="/" className={`text-xl font-medium ${theme === "light" ? "text-gray-900" : "text-white"}`}>
-          Wallet.io
+        <Link href="/" className="text-xl font-semibold text-light-primary dark:text-dark-primary hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200">
+          <Logo />
         </Link>
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           <button
             onClick={toggleTheme}
-            className={`p-2 rounded-md ${theme === "light" ? "text-gray-700 hover:bg-gray-100" : "text-gray-300 hover:bg-gray-800"}`}
+            className={`p-2 rounded-full transition-colors duration-200 ${
+              theme === "light"
+                ? "text-light-text hover:bg-light-mutedGray"
+                : "text-dark-text hover:bg-dark-mutedGray"
+            }`}
           >
             {theme === "light" ? (
               <span className="material-icons">dark_mode</span>
@@ -25,12 +30,6 @@ const Header: React.FC = () => {
             )}
           </button>
           <CustomConnectButton />
-          <Link
-            href="/login"
-            className="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded transition duration-200"
-          >
-            Login
-          </Link>
         </div>
       </div>
     </header>
@@ -38,3 +37,10 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+
+
+
+
+
+

@@ -43,23 +43,27 @@ const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider
-          theme={theme === "light" ? lightTheme({
-            accentColor: "#7b3fe4",
-            accentColorForeground: "white",
-            borderRadius: "small",
-            fontStack: "system",
-            overlayBlur: "small",
-          }) : darkTheme({
-            accentColor: "#7b3fe4",
-            accentColorForeground: "black",
-            borderRadius: "small",
-            fontStack: "system",
-            overlayBlur: "small",
-          })}
-        >
-          {children}
-        </RainbowKitProvider>
+      <RainbowKitProvider
+  theme={theme === "light" 
+    ? lightTheme({
+        accentColor: "#7b3fe4", // Consistent purple accent color
+        accentColorForeground: "white", // White foreground in light mode
+        borderRadius: "medium", // Medium for rounded corners
+        fontStack: "system", // Default system font stack
+        overlayBlur: "small", // Small blur effect for subtle depth
+      })
+    : darkTheme({
+        accentColor: "#7b3fe4", // Consistent purple accent color
+        accentColorForeground: "black", // Black foreground in dark mode
+        borderRadius: "medium", // Medium for rounded corners
+        fontStack: "system", // Default system font stack
+        overlayBlur: "small", // Small blur effect for subtle depth
+      })
+  }
+>
+  {children}
+</RainbowKitProvider>
+
       </QueryClientProvider>
     </WagmiProvider>
   );
