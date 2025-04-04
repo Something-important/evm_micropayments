@@ -3,9 +3,9 @@ import React from 'react';
 export default function HashStreamMatrix({ theme = "light" }) {
   return (
     <svg
-      width="400"
-      height="400"
-      viewBox="0 0 400 400"
+      width="800"
+      height="800"
+      viewBox="0 0 800 800"
       xmlns="http://www.w3.org/2000/svg"
       className="hash-stream-matrix"
       data-theme={theme}
@@ -49,12 +49,12 @@ export default function HashStreamMatrix({ theme = "light" }) {
 
       {/* Background with Subtle Grid */}
       <defs>
-        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--muted-gray)" strokeWidth="0.5" opacity="0.3" />
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--muted-gray)" strokeWidth="1" opacity="0.3" />
         </pattern>
       </defs>
-      <rect width="400" height="400" fill="var(--background)" />
-      <rect width="400" height="400" fill="url(#grid)" />
+      <rect width="800" height="800" fill="var(--background)" />
+      <rect width="800" height="800" fill="url(#grid)" />
 
       {/* Definitions for Gradients and Filters */}
       <defs>
@@ -67,71 +67,71 @@ export default function HashStreamMatrix({ theme = "light" }) {
           <stop offset="100%" style={{ stopColor: 'var(--secondary)' }} />
         </linearGradient>
         <filter id="shadow">
-          <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="var(--shadow-color)" floodOpacity="0.3" />
+          <feDropShadow dx="4" dy="4" stdDeviation="4" floodColor="var(--shadow-color)" floodOpacity="0.3" />
         </filter>
       </defs>
 
       {/* Central Trust Anchor (n) */}
-      <circle cx="200" cy="200" r="40" fill="url(#gradCore)" filter="url(#shadow)" />
-      <text x="200" y="200" textAnchor="middle" dominantBaseline="central" fontSize="18" fontFamily="Arial, sans-serif" fontWeight="bold" fill="var(--header-footer)">n</text>
-      <text x="200" y="230" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">Trust Anchor</text>
+      <circle cx="400" cy="400" r="80" fill="url(#gradCore)" filter="url(#shadow)" />
+      <text x="400" y="400" textAnchor="middle" dominantBaseline="central" fontSize="36" fontFamily="Arial, sans-serif" fontWeight="bold" fill="var(--header-footer)">n</text>
+      <text x="400" y="460" textAnchor="middle" fontSize="20" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">Trust Anchor</text>
 
       {/* Connection Lines */}
-      <path d="M 200 200 H 240" stroke="var(--text)" strokeWidth="2" />
-      <path d="M 200 200 H 160" stroke="var(--text)" strokeWidth="2" />
+      <path d="M 400 400 H 480" stroke="var(--text)" strokeWidth="4" />
+      <path d="M 400 400 H 320" stroke="var(--text)" strokeWidth="4" />
 
       {/* Right Side (n-n Direct, n-1 Sequential) */}
-      <path d="M 240 200 H 280 V 280 H 320" stroke="url(#gradStream)" strokeWidth="5" fill="none" />
-      <circle cx="320" cy="280" r="12" fill="var(--light-mint)" filter="url(#shadow)" />
-      <text x="320" y="280" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">n-n</text>
-      <text x="300" y="250" fontSize="10" fontFamily="Arial, sans-serif" fill="var(--secondary)">Direct Update</text>
-      <text x="300" y="265" fontSize="10" fontFamily="Arial, sans-serif" fill="var(--secondary)">to Final State</text>
+      <path d="M 480 400 H 560 V 560 H 640" stroke="url(#gradStream)" strokeWidth="10" fill="none" />
+      <circle cx="640" cy="560" r="24" fill="var(--light-mint)" filter="url(#shadow)" />
+      <text x="640" y="560" textAnchor="middle" dominantBaseline="central" fontSize="20" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-n</text>
+      <text x="600" y="500" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--secondary)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">Direct Update</text>
+      <text x="600" y="530" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--secondary)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">to Final State</text>
 
-      <path d="M 240 200 H 260 V 160 H 280" stroke="var(--primary)" strokeWidth="4" fill="none" />
-      <circle cx="280" cy="160" r="12" fill="var(--primary)" filter="url(#shadow)" />
-      <text x="280" y="160" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--header-footer)">n-1</text>
+      <path d="M 480 400 H 520 V 320 H 560" stroke="var(--primary)" strokeWidth="8" fill="none" />
+      <circle cx="560" cy="320" r="24" fill="var(--primary)" filter="url(#shadow)" />
+      <text x="560" y="320" textAnchor="middle" dominantBaseline="central" fontSize="20" fontFamily="Arial, sans-serif" fill="var(--header-footer)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-1</text>
 
-      <path d="M 280 160 H 300 V 140" stroke="var(--primary)" strokeWidth="3" fill="none" />
-      <circle cx="300" cy="140" r="10" fill="var(--primary)" filter="url(#shadow)" />
-      <text x="300" y="140" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--header-footer)">n-2</text>
+      <path d="M 560 320 H 600 V 280" stroke="var(--primary)" strokeWidth="6" fill="none" />
+      <circle cx="600" cy="280" r="20" fill="var(--primary)" filter="url(#shadow)" />
+      <text x="600" y="280" textAnchor="middle" dominantBaseline="central" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--header-footer)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-2</text>
 
-      <path d="M 300 140 H 320 V 120" stroke="var(--primary)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-      <circle cx="320" cy="120" r="8" fill="var(--primary)" filter="url(#shadow)" />
-      <text x="320" y="120" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--header-footer)">n-3</text>
-      <text x="290" y="180" fontSize="10" fontFamily="Arial, sans-serif" fill="var(--primary)">Sequential Updates</text>
-      <text x="290" y="195" fontSize="10" fontFamily="Arial, sans-serif" fill="var(--primary)">through States</text>
+      <path d="M 600 280 H 640 V 240" stroke="var(--primary)" strokeWidth="4" fill="none" strokeDasharray="10,10" />
+      <circle cx="640" cy="240" r="16" fill="var(--primary)" filter="url(#shadow)" />
+      <text x="640" y="240" textAnchor="middle" dominantBaseline="central" fontSize="16" fontFamily="Arial, sans-serif" fill="var(--header-footer)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-3</text>
+      <text x="580" y="360" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--primary)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">Sequential Updates</text>
+      <text x="580" y="390" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--primary)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">through States</text>
 
       {/* Left Side (Corrected Order: n-2 → n-3 → n-5 → n-8 → n-9) */}
-      <path d="M 160 200 H 140 V 220" stroke="var(--muted-gray)" strokeWidth="5" fill="none" />
-      <circle cx="140" cy="220" r="12" fill="var(--muted-gray)" filter="url(#shadow)" />
-      <text x="140" y="220" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">n-2</text>
+      <path d="M 320 400 H 280 V 440" stroke="var(--muted-gray)" strokeWidth="10" fill="none" />
+      <circle cx="280" cy="440" r="24" fill="var(--muted-gray)" filter="url(#shadow)" />
+      <text x="280" y="440" textAnchor="middle" dominantBaseline="central" fontSize="20" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-2</text>
 
-      <path d="M 140 220 H 120 V 240" stroke="var(--muted-gray)" strokeWidth="4" fill="none" />
-      <circle cx="120" cy="240" r="10" fill="var(--muted-gray)" filter="url(#shadow)" />
-      <text x="120" y="240" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">n-3</text>
+      <path d="M 280 440 H 240 V 480" stroke="var(--muted-gray)" strokeWidth="8" fill="none" />
+      <circle cx="240" cy="480" r="20" fill="var(--muted-gray)" filter="url(#shadow)" />
+      <text x="240" y="480" textAnchor="middle" dominantBaseline="central" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-3</text>
 
-      <path d="M 120 240 H 100 V 260" stroke="var(--muted-gray)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
-      <circle cx="100" cy="260" r="8" fill="var(--muted-gray)" filter="url(#shadow)" />
-      <text x="100" y="260" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">n-5</text>
+      <path d="M 240 480 H 200 V 520" stroke="var(--muted-gray)" strokeWidth="6" fill="none" strokeDasharray="10,10" />
+      <circle cx="200" cy="520" r="16" fill="var(--muted-gray)" filter="url(#shadow)" />
+      <text x="200" y="520" textAnchor="middle" dominantBaseline="central" fontSize="16" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-5</text>
 
-      <path d="M 100 260 H 80 V 280" stroke="var(--muted-gray)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-      <circle cx="80" cy="280" r="8" fill="var(--muted-gray)" filter="url(#shadow)" />
-      <text x="80" y="280" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">n-8</text>
+      <path d="M 200 520 H 160 V 560" stroke="var(--muted-gray)" strokeWidth="4" fill="none" strokeDasharray="10,10" />
+      <circle cx="160" cy="560" r="16" fill="var(--muted-gray)" filter="url(#shadow)" />
+      <text x="160" y="560" textAnchor="middle" dominantBaseline="central" fontSize="16" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-8</text>
 
-      <path d="M 80 280 H 60 V 300" stroke="var(--muted-gray)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-      <circle cx="60" cy="300" r="8" fill="var(--muted-gray)" filter="url(#shadow)" />
-      <text x="60" y="300" textAnchor="middle" fontSize="12" fontFamily="Arial, sans-serif" fill="var(--text)">n-9</text>
+      <path d="M 160 560 H 120 V 600" stroke="var(--muted-gray)" strokeWidth="4" fill="none" strokeDasharray="10,10" />
+      <circle cx="120" cy="600" r="16" fill="var(--muted-gray)" filter="url(#shadow)" />
+      <text x="120" y="600" textAnchor="middle" dominantBaseline="central" fontSize="16" fontFamily="Arial, sans-serif" fill="var(--text)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">n-9</text>
 
-      <text x="120" y="260" fontSize="10" fontFamily="Arial, sans-serif" fill="var(--dark-gray)">Fragmented Path</text>
-      <text x="120" y="275" fontSize="10" fontFamily="Arial, sans-serif" fill="var(--dark-gray)">with Hops</text>
+      <text x="240" y="520" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--dark-gray)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">Fragmented Path</text>
+      <text x="240" y="550" fontSize="18" fontFamily="Arial, sans-serif" fill="var(--dark-gray)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">with Hops</text>
 
       {/* Connections from n-3 and n-8 to n-n (Direct) */}
-      <path d="M 120 240 Q 200 260 320 280" stroke="var(--muted-gray)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-      <path d="M 80 280 Q 200 300 320 280" stroke="var(--muted-gray)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
+      <path d="M 240 480 Q 400 520 640 560" stroke="var(--muted-gray)" strokeWidth="4" fill="none" strokeDasharray="10,10" />
+      <path d="M 160 560 Q 400 600 640 560" stroke="var(--muted-gray)" strokeWidth="4" fill="none" strokeDasharray="10,10" />
 
       {/* Additional Details */}
-      <circle cx="200" cy="200" r="60" stroke="var(--muted-gray)" strokeWidth="1" fill="none" strokeDasharray="5,5" />
-      <text x="200" y="350" textAnchor="middle" fontSize="14" fontFamily="Arial, sans-serif" fontWeight="600" fill="var(--accent)">Matrix of Flexible Off-Chain Payments</text>
+      <circle cx="400" cy="400" r="120" stroke="var(--muted-gray)" strokeWidth="2" fill="none" strokeDasharray="10,10" />
+      <text x="400" y="700" textAnchor="middle" fontSize="28" fontFamily="Arial, sans-serif" fontWeight="600" fill="var(--accent)" paintOrder="stroke" stroke="var(--background)" strokeWidth="2">Matrix of Flexible Off-Chain Payments</text>
     </svg>
   );
 }
