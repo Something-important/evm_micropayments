@@ -1,18 +1,12 @@
-// Footer.tsx
 import React from "react";
 import Link from "next/link";
-import { useTheme } from "../../context/themeContext";
 
 const Footer: React.FC = () => {
-  const { theme } = useTheme();
-
   return (
-    <footer
-      className={`w-full py-8 px-6 bg-light-headerFooter text-light-text dark:bg-dark-headerFooter dark:text-dark-text`}
-    >
+    <footer className="w-full py-8 px-6 bg-light-headerFooter text-light-text dark:bg-dark-headerFooter dark:text-dark-text">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
         <div>
-          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+          <h3 className="font-semibold mb-3 text-light-primary dark:text-dark-primary">
             HashPay
           </h3>
           <p className="text-sm text-light-darkGray dark:text-dark-mutedGray">
@@ -20,7 +14,7 @@ const Footer: React.FC = () => {
           </p>
         </div>
         <div>
-          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+          <h3 className="font-semibold mb-3 text-light-primary dark:text-dark-primary">
             Community
           </h3>
           <ul className="space-y-2 text-sm">
@@ -43,7 +37,7 @@ const Footer: React.FC = () => {
           </ul>
         </div>
         <div>
-          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+          <h3 className="font-semibold mb-3 text-light-primary dark:text-dark-primary">
             Links
           </h3>
           <ul className="space-y-2 text-sm">
@@ -66,7 +60,7 @@ const Footer: React.FC = () => {
           </ul>
         </div>
         <div>
-          <h3 className={`font-semibold mb-3 text-light-primary dark:text-dark-primary`}>
+          <h3 className="font-semibold mb-3 text-light-primary dark:text-dark-primary">
             Contact
           </h3>
           <ul className="space-y-2 text-sm">
@@ -83,4 +77,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-

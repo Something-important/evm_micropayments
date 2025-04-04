@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from "react";
 import { useWriteContract } from "wagmi";
+import { TransactionResponse } from "ethers";
 import contractABI from "../utils/contracts/citrea.json";
 import { useTheme } from "../context/themeContext";
 
@@ -13,7 +14,7 @@ const ReclaimChannelTab: React.FC = () => {
 
   const reclaimChannel = async () => {
     try {
-      const transaction: any = await writeContract({
+      const transaction: TransactionResponse | void = await writeContract({
         address: contractAddress,
         abi: contractABI,
         functionName: "reclaimChannel",

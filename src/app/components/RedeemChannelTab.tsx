@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from "react";
 import { useWriteContract } from "wagmi";
+import { TransactionResponse } from "ethers";
 import contractABI from "../utils/contracts/citrea.json";
 import { useTheme } from "../context/themeContext";
 
@@ -16,15 +17,17 @@ const RedeemChannelTab: React.FC = () => {
 
   const redeemChannel = async () => {
     try {
-      const transaction: any = await writeContract({
+      const transaction: TransactionResponse | void = await writeContract({
         address: contractAddress,
         abi: contractABI,
         functionName: "redeemChannel",
         args: [payer, finalHashValue, BigInt(numberOfTokensUsed)],
       });
       console.log("Transaction hash:", transaction);
-      setTxHash(transaction.hash);
-      resetForm();
+      if (transaction !== undefined && transaction !== null) {
+        setTxHash((transaction as TransactionResponse).hash);
+        resetForm();
+      }
     } catch (error) {
       console.error("Error redeeming channel:", error);
     }

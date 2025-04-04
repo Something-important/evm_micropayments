@@ -11,22 +11,19 @@ export default function Home() {
 
   return (
     <div
-      className={`min-h-screen ${
-        theme === "light"
-          ? "bg-light-background text-light-text"
-          : "bg-dark-background text-dark-text"
-      }`}
+      className={`min-h-screen ${theme === "light"
+        ? "bg-light-background text-light-text"
+        : "bg-dark-background text-dark-text"
+        }`}
     >
       <Header />
 
       {/* Hero Section */}
       <div className="flex flex-col md:flex-row items-center justify-between px-6 py-12 max-w-6xl mx-auto">
         <div className="md:w-1/2 space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-light-secondary dark:text-dark-secondary">
-            Stream seamless recurring crypto payments with HashPay!
-          </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Automate salaries by streaming them - so employees can withdraw whenever they want.
+          <h1 style={{ fontFamily: "Inter", fontSize: "2.5rem", fontWeight: 800 }}>Stream seamless crypto payments</h1>
+          <p style={{ fontFamily: "Inter", fontSize: "1.125rem" }}>
+            Automate salaries with HashPay.
           </p>
           <Link href="/dashboard">
             <button className="px-6 py-2 bg-light-primary text-white dark:bg-dark-primary rounded hover:bg-green-600 dark:hover:bg-green-500 transition">

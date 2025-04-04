@@ -96,6 +96,7 @@ const CustomConnectButton: React.FC = () => {
                             alt={chain.name ?? "Chain icon"}
                             src={chain.iconUrl}
                             style={{ width: 24, height: 24 }}
+                            loading="lazy"
                           />
                         )}
                       </div>

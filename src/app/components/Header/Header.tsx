@@ -10,7 +10,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="w-full py-4 px-6 bg-light-headerFooter dark:bg-dark-headerFooter text-light-text dark:text-dark-text shadow-md">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <div className="mx-auto flex items-center justify-between">
         <Link href="/" className="text-xl font-semibold text-light-primary dark:text-dark-primary hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200">
           <Logo />
         </Link>

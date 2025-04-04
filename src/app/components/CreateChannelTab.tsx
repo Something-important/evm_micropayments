@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
+import { TransactionResponse } from "ethers";
 import contractABI from "../utils/contracts/citrea.json";
 import { useTheme } from "../context/themeContext";
 
@@ -29,7 +30,7 @@ const CreateChannelTab: React.FC = () => {
     setTxHash(null); // Reset tx hash
 
     try {
-      const tx = await writeContract({
+      const tx: TransactionResponse | void = await writeContract({
         address: contractAddress,
         abi: contractABI,
         functionName: "createChannel",
@@ -44,8 +45,10 @@ const CreateChannelTab: React.FC = () => {
         value: BigInt(amount),
       });
 
-      setTxHash(tx.hash); // Store transaction hash if available
-
+      // If the transaction is sent, update txHash
+      if (tx !== undefined && tx !== null && 'hash' in tx) {
+        setTxHash((tx as TransactionResponse).hash);
+      }
     } catch (error: any) {
       console.error("Error creating channel:", error);
 

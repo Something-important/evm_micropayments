@@ -20,7 +20,7 @@ const ViewChannelTab: React.FC = () => {
   const [role, setRole] = useState<"payer" | "merchant">("payer"); // Role toggle
   const [channelData, setChannelData] = useState<ChannelData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<Error | null>(null); // More specific type for error
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false); // Toggle for advanced options
   const [highlightPayer, setHighlightPayer] = useState<boolean>(false); // Highlight payer address field
   const [highlightMerchant, setHighlightMerchant] = useState<boolean>(false); // Highlight merchant address field
@@ -32,11 +32,11 @@ const ViewChannelTab: React.FC = () => {
   useEffect(() => {
     if (connectedAddress) {
       if (role === "payer") {
-        setPayer(connectedAddress); 
+        setPayer(connectedAddress);
         setHighlightPayer(false); // Remove highlight on payer if address is auto-filled
         setHighlightMerchant(true); // Highlight merchant address box to fill
       } else {
-        setMerchant(connectedAddress); 
+        setMerchant(connectedAddress);
         setHighlightMerchant(false); // Remove highlight on merchant if address is auto-filled
         setHighlightPayer(true); // Highlight payer address box to fill
       }
@@ -77,7 +77,7 @@ const ViewChannelTab: React.FC = () => {
     if (payer && merchant) {
       console.log("Fetching channel data with:", { payer, merchant });
       setIsLoading(true);
-      setError(null);
+      setError(null); // Reset error before fetching new data
     } else {
       console.error("Payer or merchant address is missing.");
     }
@@ -95,7 +95,7 @@ const ViewChannelTab: React.FC = () => {
   const { theme } = useTheme(); // Accessing the current theme
 
   // Determine text color based on theme
-  const textColor = theme === "light" ? "text-light-primary" : "text-dark-primary";  // Change to text-gray-200 for better contrast in dark mode
+  const textColor = theme === "light" ? "text-light-primary" : "text-dark-primary";  // Adjusted to reflect better contrast
   const inputColor = theme === "light" ? "text-light-text" : "text-dark-text";
 
   return (
