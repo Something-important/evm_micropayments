@@ -37,7 +37,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Arial", "sans-serif"], // Custom font family
+        sans: ["Inter", "sans-serif"], // Custom font family
       },
       // Add more custom spacing, breakpoints, etc., as needed
     },
