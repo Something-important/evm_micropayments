@@ -1,21 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Light mode variables */
 :root {
-  --background: #F3F4F6; /* Matches custom theme’s light.background */
-  --foreground: #333333; /* Matches custom theme’s light.text */
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  --primary: #10B981;
+  --primary-hover: #059669;
+  --secondary: #6366F1;
+  --secondary-hover: #4F46E5;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --border: #E2E8F0;
+  --card: #FFFFFF;
 }
 
-/* Dark mode variables when .dark class is present */
+/* Dark mode variables */
 .dark {
-  --background: #2D3748; /* Matches custom theme’s dark.background */
-  --foreground: #E2E8F0; /* Matches custom theme’s dark.text */
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --primary: #10B981;
+  --primary-hover: #059669;
+  --secondary: #6366F1;
+  --secondary-hover: #4F46E5;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --border: #334155;
+  --card: #1E293B;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply antialiased;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2.5 bg-primary text-white rounded-lg font-medium
+    hover:bg-primary-hover transition-all duration-200
+    focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+    dark:focus:ring-offset-dark-background;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 bg-secondary text-white rounded-lg font-medium
+    hover:bg-secondary-hover transition-all duration-200
+    focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2
+    dark:focus:ring-offset-dark-background;
+  }
+
+  .card {
+    @apply bg-card rounded-xl border border-border p-6
+    shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-border
+    bg-card text-foreground placeholder-muted-foreground
+    focus:outline-none focus:ring-2 focus:ring-primary
+    dark:focus:ring-offset-dark-background;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
 }

@@ -10,6 +10,16 @@ export default {
   theme: {
     extend: {
       colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        primary: 'var(--primary)',
+        'primary-hover': 'var(--primary-hover)',
+        secondary: 'var(--secondary)',
+        'secondary-hover': 'var(--secondary-hover)',
+        muted: 'var(--muted)',
+        'muted-foreground': 'var(--muted-foreground)',
+        border: 'var(--border)',
+        card: 'var(--card)',
         // Light theme colors
         light: {
           background: "#F3F4F6", // Light gray background (better than plain white)
@@ -38,6 +48,20 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"], // Custom font family
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
       // Add more custom spacing, breakpoints, etc., as needed
     },
