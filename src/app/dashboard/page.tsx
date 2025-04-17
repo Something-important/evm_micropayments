@@ -1,44 +1,60 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CreateChannelTab from "../components/CreateChannelTab";
 import ReclaimChannelTab from "../components/ReclaimChannelTab";
 import RedeemChannelTab from "../components/RedeemChannelTab";
 import ViewChannelTab from "../components/ViewChannelTab";
+import GenerateHashchainTab from "../components/GenerateHashchainTab"; // New tab
+import DashboardHome2 from "../components/Dashboard";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { useTheme } from "../context/themeContext";
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("create"); // Default to "create" tab
+  // 🟢 Load from localStorage directly on initial render
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("dashboardActiveTab") || "home";
+    }
+    return "home";
+  });
+
   const { theme } = useTheme();
 
-  // Set theme-specific background color for sidebar and main content
-  const sidebarBgColor = theme === "light" ? "bg-light-background" : "bg-dark-background"; // Same as content background
-  const contentBgColor = theme === "light" ? "bg-light-background" : "bg-dark-background"; // Same as content background
+  // 🔁 Update localStorage when tab changes
+  useEffect(() => {
+    localStorage.setItem("dashboardActiveTab", activeTab);
+  }, [activeTab]);
+
+  const sidebarBgColor =
+    theme === "light" ? "bg-light-background" : "bg-dark-background";
+  const contentBgColor =
+    theme === "light" ? "bg-light-background" : "bg-dark-background";
+
+  // 🧭 Define all tabs here
+  const tabs = [
+    { id: "home", label: "Dashboard Home", icon: "dashboard" },
+    { id: "create", label: "Create Channel", icon: "add_circle" },
+    { id: "reclaim", label: "Reclaim Channel", icon: "refresh" },
+    { id: "redeem", label: "Redeem Channel", icon: "redeem" },
+    { id: "view", label: "View Channel", icon: "visibility" },
+    { id: "hashchain", label: "Generate Hashchain", icon: "fingerprint" }, // 🆕 Hashchain tab
+  ];
 
   return (
     <div
       className={`min-h-screen flex flex-col ${contentBgColor} text-light-text dark:text-dark-text`}
     >
+      {/* Header */}
       <Header />
+
       <div className="flex flex-row flex-1">
         {/* Sidebar */}
         <div
-          className={`w-64 h-full p-6 ${sidebarBgColor} border-r-2 border-light-mutedGray dark:border-dark-mutedGray`}
+          className={`w-64 h-full p-6 ${sidebarBgColor} border-r-2 border-light-mutedGray dark:border-dark-mutedGray mt-16`}
         >
-          <h2
-            className={`text-2xl font-semibold text-center text-light-primary dark:text-dark-primary mb-8`}
-          >
-            Dashboard
-          </h2>
-
           <div className="space-y-4">
-            {[
-              { id: "create", label: "Create Channel", icon: "add_circle" },
-              { id: "reclaim", label: "Reclaim Channel", icon: "refresh" },
-              { id: "redeem", label: "Redeem Channel", icon: "redeem" },
-              { id: "view", label: "View Channel", icon: "visibility" },
-            ].map((tab) => (
+            {tabs.map((tab) => (
               <button
                 key={tab.id}
                 className={`block py-2 px-4 rounded-lg flex items-center gap-3 w-full text-left ${
@@ -57,17 +73,18 @@ const Dashboard = () => {
 
         {/* Main Content */}
         <div className="flex-1 p-6">
-          {/* Tab content */}
           <div className="mt-8">
+            {activeTab === "home" && <DashboardHome2 />}
             {activeTab === "create" && <CreateChannelTab />}
             {activeTab === "reclaim" && <ReclaimChannelTab />}
             {activeTab === "redeem" && <RedeemChannelTab />}
             {activeTab === "view" && <ViewChannelTab />}
+            {activeTab === "hashchain" && <GenerateHashchainTab />} {/* ✅ New tab rendered */}
           </div>
         </div>
       </div>
 
-      {/* Footer - Fixed at the bottom */}
+      {/* Footer */}
       <Footer />
     </div>
   );
