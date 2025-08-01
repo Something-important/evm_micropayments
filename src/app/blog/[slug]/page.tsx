@@ -3,28 +3,49 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
-import Head from 'next/head';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Image from 'next/image';
+import { getPostBySlug, getPosts } from '@/lib/blog';
+import { notFound } from 'next/navigation';
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
-  const filePath = path.join(process.cwd(), 'src/content/posts', `${slug}.md`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { data, content } = matter(fileContents);
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  const posts = await getPosts();
   
-  // Configure marked
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function BlogPost({ params }: PageProps) {
+  const { slug } = await params;
+  
+  // Get the post data
+  const post = await getPostBySlug(slug);
+  
+  if (!post) {
+    notFound();
+  }
+
+  // Read the markdown content for rendering
+  const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+  const filePath = path.join(postsDirectory, `${slug}.md`);
+  const fileContents = fs.readFileSync(filePath, 'utf8');
+  const { content } = matter(fileContents);
+
+  // Configure marked for rendering
   marked.setOptions({
     gfm: true,
     breaks: true,
-    pedantic: false
   });
 
-  // Custom renderer for images
   const renderer = new marked.Renderer();
   renderer.image = ({ href, title, text }) => {
-    // Extract classes from the title if present
     const classes = title ? title.replace(/^{: /, '').replace(/}$/, '') : '';
     return `<img src="${href}" alt="${text}" class="${classes} mx-auto rounded-lg shadow-lg" />`;
   };
@@ -35,33 +56,27 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   // Extract headings for table of contents
   const headings = content
     .split('\n')
-    .filter(line => line.startsWith('## '))
-    .map(line => ({
+    .filter((line: string) => line.startsWith('## '))
+    .map((line: string) => ({
       title: line.replace('## ', ''),
       id: line.replace('## ', '').toLowerCase().replace(/[^a-z0-9]+/g, '-')
     }));
 
-  // Generate share URLs
   const shareUrl = `https://hashpay.com/blog/${slug}`;
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(data.title)}&url=${encodeURIComponent(shareUrl)}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(shareUrl)}`;
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
 
   return (
     <div className="min-h-screen bg-background dark:bg-dark-background">
-      <Head>
-        <title>{data.title}</title>
-        <meta name="description" content={data.excerpt} />
-      </Head>
       <Header />
       
       <main className="container mx-auto px-4 py-20 max-w-4xl">
         <article className="prose dark:prose-invert max-w-none">
-          {/* Featured Image */}
-          {data.image && (
+          {post.image && (
             <div className="relative w-full h-[400px] mb-12 rounded-xl overflow-hidden">
               <Image
-                src={data.image}
-                alt={data.title}
+                src={post.image}
+                alt={post.title}
                 fill
                 className="object-cover"
                 priority
@@ -70,20 +85,19 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           )}
 
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-4">{data.title}</h1>
+            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
             <div className="flex items-center gap-4 text-muted-foreground">
-              <span>{data.date}</span>
-              {data.author && <span>By {data.author}</span>}
-              {data.readTime && <span>{data.readTime}</span>}
+              <span>{post.date}</span>
+              {post.author && <span>By {post.author}</span>}
+              {post.readTime && <span>{post.readTime}</span>}
             </div>
-            {data.category && (
+            {post.category && (
               <span className="inline-block px-3 py-1 mt-4 text-sm rounded-full bg-primary/10 text-primary">
-                {data.category}
+                {post.category}
               </span>
             )}
           </div>
 
-          {/* Table of Contents */}
           {headings.length > 0 && (
             <div className="mb-12 p-6 bg-muted/50 rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
@@ -102,7 +116,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             </div>
           )}
 
-          <div 
+          <div
             className="prose-headings:font-bold 
                       prose-a:text-primary prose-a:no-underline
                       prose-pre:bg-[#0f172a] prose-pre:text-[#e2e8f0] prose-pre:p-4 prose-pre:rounded-lg
@@ -115,10 +129,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                       prose-td:border prose-td:border-gray-300 prose-td:p-2
                       [&_.language-bash]:text-[#10b981]
                       [&_.language-typescript]:text-[#3b82f6]"
-            dangerouslySetInnerHTML={{ __html: htmlContent }} 
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
 
-          {/* Share Section */}
           <div className="mt-12 pt-8 border-t border-border">
             <h3 className="text-xl font-semibold mb-4">Share this article</h3>
             <div className="flex gap-4">

@@ -11,6 +11,7 @@ export interface Post {
   category?: string;
   readTime?: string;
   tags?: string[];
+  image?: string;
 }
 
 export async function getPosts(): Promise<Post[]> {

@@ -3,6 +3,20 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true, // Enabling React Strict Mode for better dev experience
 
+  // Enable static export for GitHub Pages
+  output: 'export',
+  
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
+  },
+
+  // Configure trailing slashes for static hosting
+  trailingSlash: true,
+
+  // Set base path for GitHub Pages (if using custom domain, remove this)
+  // basePath: '/evm_micropayments',
+
   // Disable Turbopack (experimental) in all environments
   webpack: (config) => {
     if (process.env.TURBOPACK === 'false') {
