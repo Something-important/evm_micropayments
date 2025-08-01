@@ -2,7 +2,7 @@
 title: "How HashPay Ensures Top-Tier Security for Payment Streaming"
 excerpt: "Learn about the robust security measures that make HashPay a trusted platform for digital transactions."
 date: "2024-03-10"
-author: "Michael Rodriguez"
+author: "HashPay Team"
 category: "Security"
 readTime: "6 min read"
 image: "/images/wall.jpeg"

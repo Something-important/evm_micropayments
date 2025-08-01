@@ -448,17 +448,9 @@ const CreateChannelTab: React.FC = () => {
       const receipt = await tx.wait();
       setStatus(`Transaction confirmed in block: ${receipt.blockNumber}`);
     } catch (err: any) {
-      let errorMsg = "Unknown error";
-      if (err.code === "INSUFFICIENT_FUNDS") {
-        errorMsg = "Insufficient cBTC for gas or transaction.";
-      } else if (err.code === "UNPREDICTABLE_GAS_LIMIT") {
-        errorMsg = "Cannot estimate gas. Check contract address or parameters.";
-      } else if (err.reason) {
-        errorMsg = `Contract Error: ${err.reason}`;
-      } else {
-        errorMsg = `Transaction Error: ${err.message || "Failed to create channel"}`;
-      }
-      setErrorMessage(errorMsg);
+      // Let the SDK's error message shine ✨
+      console.log("Error creating channel:", err);
+      setErrorMessage(err?.message || "Unexpected error occurred.");
     } finally {
       setIsPending(false);
     }

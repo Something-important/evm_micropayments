@@ -2,7 +2,7 @@
 title: "Scaling HashPay: Powering High-Volume Transactions"
 excerpt: "A technical look at how HashPay's infrastructure supports massive payment streams with speed and reliability."
 date: "2024-03-05"
-author: "Alex Kumar"
+author: "HashPay Team"
 category: "Engineering"
 readTime: "7 min read"
 ---

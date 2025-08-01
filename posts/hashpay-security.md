@@ -3,7 +3,7 @@ id: 2
 title: How HashPay Ensures Top-Tier Security for Payment Streaming
 excerpt: Learn about the robust security measures that make HashPay a trusted platform for digital transactions...
 date: April 5, 2025
-author: Michael Rodriguez
+author: HashPay Team
 category: Security
 readTime: 6 min read
 image: https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80

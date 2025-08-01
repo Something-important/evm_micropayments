@@ -2,7 +2,7 @@
 title: "Introducing HashPay: The Future of Payment Streaming"
 excerpt: "Discover how HashPay's real-time payment streaming is transforming digital transactions for businesses and users."
 date: "2024-03-15"
-author: "Sarah Chen"
+author: "HashPay Team"
 category: "Product Launch"
 readTime: "4 min read"
 ---
