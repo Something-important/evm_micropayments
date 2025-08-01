@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
 
   // Set base path for GitHub Pages (if using custom domain, remove this)
-  // basePath: '/evm_micropayments',
+  basePath: '/evm_micropayments',
 
   // Disable Turbopack (experimental) in all environments
   webpack: (config) => {

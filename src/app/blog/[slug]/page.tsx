@@ -44,12 +44,14 @@ export default async function BlogPost({ params }: PageProps) {
     breaks: true,
   });
 
-  const renderer = new marked.Renderer();
-  renderer.image = ({ href, title, text }) => {
-    const classes = title ? title.replace(/^{: /, '').replace(/}$/, '') : '';
-    return `<img src="${href}" alt="${text}" class="${classes} mx-auto rounded-lg shadow-lg" />`;
-  };
-  marked.use({ renderer });
+          const renderer = new marked.Renderer();
+        renderer.image = ({ href, title, text }) => {
+          const classes = title ? title.replace(/^{: /, '').replace(/}$/, '') : '';
+          // Add base path for GitHub Pages
+          const imageSrc = href.startsWith('/') ? `/evm_micropayments${href}` : href;
+          return `<img src="${imageSrc}" alt="${text}" class="${classes} mx-auto rounded-lg shadow-lg" />`;
+        };
+        marked.use({ renderer });
 
   const htmlContent = marked.parse(content) as string;
 
